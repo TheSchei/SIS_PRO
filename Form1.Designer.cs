@@ -1,7 +1,7 @@
 ﻿
 namespace SIS_PRO
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,13 +29,67 @@ namespace SIS_PRO
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.NumberOfChanelsLabel = new System.Windows.Forms.Label();
+            this.NumberOfChanelsBox = new System.Windows.Forms.NumericUpDown();
+            this.LogTextBox = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfChanelsBox)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // NumberOfChanelsLabel
+            // 
+            this.NumberOfChanelsLabel.AutoSize = true;
+            this.NumberOfChanelsLabel.Location = new System.Drawing.Point(13, 13);
+            this.NumberOfChanelsLabel.Name = "NumberOfChanelsLabel";
+            this.NumberOfChanelsLabel.Size = new System.Drawing.Size(78, 15);
+            this.NumberOfChanelsLabel.TabIndex = 0;
+            this.NumberOfChanelsLabel.Text = "Ilość kanałów";
+            // 
+            // NumberOfChanelsBox
+            // 
+            this.NumberOfChanelsBox.Location = new System.Drawing.Point(168, 13);
+            this.NumberOfChanelsBox.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumberOfChanelsBox.Name = "NumberOfChanelsBox";
+            this.NumberOfChanelsBox.Size = new System.Drawing.Size(120, 23);
+            this.NumberOfChanelsBox.TabIndex = 2;
+            this.NumberOfChanelsBox.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // LogTextBox
+            // 
+            this.LogTextBox.Location = new System.Drawing.Point(13, 142);
+            this.LogTextBox.Multiline = true;
+            this.LogTextBox.Name = "LogTextBox";
+            this.LogTextBox.Size = new System.Drawing.Size(275, 296);
+            this.LogTextBox.TabIndex = 3;
+            // 
+            // MainWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.LogTextBox);
+            this.Controls.Add(this.NumberOfChanelsBox);
+            this.Controls.Add(this.NumberOfChanelsLabel);
+            this.Name = "MainWindow";
+            this.Text = "SIS Projekt 9";
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfChanelsBox)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label NumberOfChanelsLabel;
+        private System.Windows.Forms.NumericUpDown NumberOfChanelsBox;
+        private System.Windows.Forms.TextBox LogTextBox;
     }
 }
 
