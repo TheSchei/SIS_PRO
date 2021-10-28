@@ -26,7 +26,7 @@ namespace SIS_PRO
             EvolutionAlgorithm Algorithm = new EvolutionAlgorithm(Convert.ToInt32(NumberOfChanelsBox.Value));
             try
             {
-                Algorithm.Run();
+                Algorithm.FindBestSolution();
                 LogTextBox.AppendText(Algorithm.ToString());
             }catch(NotImplementedException Ex)
             {
