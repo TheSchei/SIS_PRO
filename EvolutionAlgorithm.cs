@@ -26,7 +26,14 @@ namespace SIS_PRO
         }
         private bool TryToFindSolution(int size)//true - znaleziono (wtedy jeszcze ustawia BestResult)
         {
-            throw new NotImplementedException("EvolutionAlgorithm.TryToFindSolution");
+            Genome Solver = new Genome(size);
+            Chromosome NewBestResult = Solver.Run();
+            if(!(NewBestResult is null))
+            {
+                BestResult = NewBestResult;
+                return true;
+            }
+            return false;
         }
         public void PrintResult()
         {
