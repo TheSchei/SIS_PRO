@@ -32,6 +32,7 @@ namespace SIS_PRO
             this.NumberOfChanelsLabel = new System.Windows.Forms.Label();
             this.NumberOfChanelsBox = new System.Windows.Forms.NumericUpDown();
             this.LogTextBox = new System.Windows.Forms.TextBox();
+            this.Start_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfChanelsBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@ namespace SIS_PRO
             // 
             // NumberOfChanelsBox
             // 
-            this.NumberOfChanelsBox.Location = new System.Drawing.Point(168, 13);
+            this.NumberOfChanelsBox.Location = new System.Drawing.Point(238, 13);
             this.NumberOfChanelsBox.Minimum = new decimal(new int[] {
             1,
             0,
@@ -66,14 +67,25 @@ namespace SIS_PRO
             this.LogTextBox.Location = new System.Drawing.Point(13, 142);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
-            this.LogTextBox.Size = new System.Drawing.Size(275, 296);
+            this.LogTextBox.Size = new System.Drawing.Size(345, 296);
             this.LogTextBox.TabIndex = 3;
+            // 
+            // Start_Button
+            // 
+            this.Start_Button.Location = new System.Drawing.Point(283, 113);
+            this.Start_Button.Name = "Start_Button";
+            this.Start_Button.Size = new System.Drawing.Size(75, 23);
+            this.Start_Button.TabIndex = 4;
+            this.Start_Button.Text = "Start";
+            this.Start_Button.UseVisualStyleBackColor = true;
+            this.Start_Button.Click += new System.EventHandler(this.Start_Button_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(368, 450);
+            this.Controls.Add(this.Start_Button);
             this.Controls.Add(this.LogTextBox);
             this.Controls.Add(this.NumberOfChanelsBox);
             this.Controls.Add(this.NumberOfChanelsLabel);
@@ -90,6 +102,7 @@ namespace SIS_PRO
         private System.Windows.Forms.Label NumberOfChanelsLabel;
         private System.Windows.Forms.NumericUpDown NumberOfChanelsBox;
         private System.Windows.Forms.TextBox LogTextBox;
+        private System.Windows.Forms.Button Start_Button;
     }
 }
 
