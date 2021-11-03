@@ -39,6 +39,7 @@ namespace SIS_PRO
         }
         private void GenerateChromosomes()//można zrobić, żę zwraca obecnie najlepszy, i na tej podstawie ustawiać CurrentBest
         {
+            Chromosomes = new List<Chromosome>();
             for (int i = 0; i < NumberOfChromosomes; i++)
                 Chromosomes.Add(new Chromosome(NumberOfGenes));
         }
