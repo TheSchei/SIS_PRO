@@ -55,7 +55,7 @@ namespace SIS_PRO
         {
             int ToGene = rnd.Next(Width);
             while(Channels.Contains(ToGene))
-                ToGene = rnd.Next(NumberOfGenes);
+                ToGene = rnd.Next(Width);
             Channels[FromGene] = ToGene;
             Channels.Sort();
         }

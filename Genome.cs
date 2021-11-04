@@ -21,7 +21,7 @@ namespace SIS_PRO
             this.NumberOfGenes = NumberOfGenes;
             this.WindowWidth = WindowWidth;
             NumberOfChromosomes = 10;
-            NumberOfIterationsWithoutProgress = 100;//orientacyjnie
+            NumberOfIterationsWithoutProgress = 1000;//orientacyjnie
             GenerateChromosomes();
         }
         public Genome(int NumberOfGenes, int WindowWidth, int NumberOfChromosomes)
@@ -60,7 +60,10 @@ namespace SIS_PRO
             Chromosomes = new List<Chromosome>();
             for (int i = 0; i < NumberOfChromosomes; i++)
                 Chromosomes.Add(new Chromosome(NumberOfGenes, WindowWidth));
-            SetCurrentBest();
+            CurrentBest = Chromosomes[0].getValue();
+            foreach (Chromosome chromosome in Chromosomes)
+                if (chromosome.getValue() < CurrentBest)
+                    CurrentBest = chromosome.getValue();
         }
         private Chromosome ChooseBestChromosomes()//zwraca obecnie najlepszy
         {

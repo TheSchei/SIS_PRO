@@ -18,11 +18,15 @@ namespace SIS_PRO
             int Size = NumberOfChanels * NumberOfChanels;
             if (TryToFindSolution(Size))//można ewentualnie jakoś zoptymalizaować, np. sprawdzając jak szybko znaleziono rezultat
             {//trafiono od razu, więc zmniejszamy rozmiar po jednym tak długo jak siębędzie udawać
-                while (TryToFindSolution(ChannelSize));
-                    Size = ChannelSize + 1;
+                Size--;
+                while (TryToFindSolution(Size))
+                {
+                    Size = ChannelSize;
+                    Size--;
+                }
             }
             else//nie trafiono, więc zwiększamy aż się nie uda
-                while (TryToFindSolution(++Size));
+                while (!TryToFindSolution(++Size));
 
         }
         private bool TryToFindSolution(int size)//true - znaleziono (wtedy jeszcze ustawia BestResult)
@@ -33,8 +37,7 @@ namespace SIS_PRO
             {
                 BestResult = NewBestResult;
                 ChannelSize = NewBestResult.getChannelWidth();
-                if (ChannelSize != size)
-                    return true;
+                return true;
             }
             return false;
         }
