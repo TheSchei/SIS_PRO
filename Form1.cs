@@ -27,7 +27,7 @@ namespace SIS_PRO
             try
             {
                 Algorithm.FindBestSolution();
-                LogTextBox.AppendText(Algorithm.ToString());
+                LogTextBox.AppendText(Algorithm.PrintResult());
             }catch(NotImplementedException Ex)
             {
                 LogTextBox.AppendText("NIE ZAIMPLEMENTOWANO: " + Ex.Message + Environment.NewLine);
