@@ -23,6 +23,10 @@ namespace SIS_PRO
             GenerateBaseSolution();
             CalculateCollisions();
         }
+        public Chromosome DeepCopy()
+        {
+            throw new NotImplementedException("Chromosome.DeepCopy");
+        }
 
         public void Mutate()
         {
