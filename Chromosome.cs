@@ -187,11 +187,16 @@ namespace SIS_PRO
             return NumberOfCollisions;
         }
 
+        public int getChannelWidth()
+        {
+            return Channels[Channels.Count - 1] - Channels[0] + 1;
+        }
+
         public string PrintResult()
         {
             string output = "";
             output += "Liczba kolizji to: " + NumberOfCollisions.ToString() + Environment.NewLine;
-            output += "Szerokość kanału to: " + Width.ToString() + Environment.NewLine;
+            output += "Szerokość kanału to: " + getChannelWidth().ToString() + Environment.NewLine;
             output += "Zajęte kanały to: " + Environment.NewLine;
             output += "Zajęte kanały to: " + PrintChanels() + Environment.NewLine;
             output += Environment.NewLine;

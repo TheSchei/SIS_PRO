@@ -8,6 +8,7 @@ namespace SIS_PRO
     {
         private Chromosome BestResult;
         private int NumberOfChanels;
+        private int ChannelSize;
         public EvolutionAlgorithm(int NumberOfChanels)
         {
             this.NumberOfChanels = NumberOfChanels;
@@ -17,8 +18,8 @@ namespace SIS_PRO
             int Size = NumberOfChanels * NumberOfChanels;
             if (TryToFindSolution(Size))//można ewentualnie jakoś zoptymalizaować, np. sprawdzając jak szybko znaleziono rezultat
             {//trafiono od razu, więc zmniejszamy rozmiar po jednym tak długo jak siębędzie udawać
-                while (!TryToFindSolution(--Size));
-                Size++;
+                while (!TryToFindSolution(ChannelSize));
+                Size = ChannelSize + 1;
             }
             else//nie trafiono, więc zwiększamy aż się nie uda
                 while (TryToFindSolution(++Size));
@@ -31,6 +32,7 @@ namespace SIS_PRO
             if(!(NewBestResult is null))
             {
                 BestResult = NewBestResult;
+                ChannelSize = NewBestResult.getChannelWidth();
                 return true;
             }
             return false;
