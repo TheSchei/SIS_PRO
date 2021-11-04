@@ -195,7 +195,7 @@ namespace SIS_PRO
             output += "Zajęte kanały to: " + Environment.NewLine;
             output += "Zajęte kanały to: " + PrintChanels() + Environment.NewLine;
             output += Environment.NewLine;
-            throw new NotImplementedException("Chromosome.PrintResult");
+            return output;
         }
         private string PrintChanels()
         {
