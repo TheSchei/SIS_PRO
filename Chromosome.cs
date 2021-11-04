@@ -186,7 +186,20 @@ namespace SIS_PRO
 
         public string PrintResult()
         {
+            string output = "";
+            output += "Liczba kolizji to: " + NumberOfCollisions.ToString() + Environment.NewLine;
+            output += "Szerokość kanału to: " + NumberOfGenes.ToString() + Environment.NewLine;
+            output += "Zajęte kanały to: " + Environment.NewLine;
+            output += "Zajęte kanały to: " + PrintChanels() + Environment.NewLine;
+            output += Environment.NewLine;
             throw new NotImplementedException("Chromosome.PrintResult");
+        }
+        private string PrintChanels()
+        {
+            string output = "";
+            foreach (int channel in Channels)
+                output += channel.ToString() + " ";
+            return output;
         }
     }
 }

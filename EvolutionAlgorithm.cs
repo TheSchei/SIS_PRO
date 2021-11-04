@@ -35,8 +35,9 @@ namespace SIS_PRO
             }
             return false;
         }
-        public void PrintResult()
+        public string PrintResult()
         {
+            return BestResult.PrintResult();
             throw new NotImplementedException("EvolutionAlgorithm.PrintResult");
         }
     }
