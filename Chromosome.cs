@@ -13,22 +13,37 @@ namespace SIS_PRO
         //  czyli sumę np. sumę wyników mieszania po indeksach kanałów z sygnałem właściwym 
         private List<int> Channels;
         private int NumberOfCollisions;
+        private int NumberOfGenes;
         private Random rnd = new Random();
 
         public Chromosome(int NumberOfGenes)
         {
             Channels = new List<int>();
-            GenerateBaseSolution(NumberOfGenes);
-            GenerateAllPairs(Channels);
-            //throw new NotImplementedException("Chromosome");
+            this.NumberOfGenes = NumberOfGenes;
+            GenerateBaseSolution();
+            CalculateCollisions();
         }
 
         public void Mutate()
         {
-            throw new NotImplementedException("Chromosome.Mutate");
+            int FromGene = GetGeneIndex();
+            TransitGene(FromGene);
+            CalculateCollisions();
+        }
+        private int GetGeneIndex()
+        {
+            return rnd.Next(Channels.Count);
+        }
+        private void TransitGene(int FromGene)
+        {
+            int ToGene = rnd.Next(NumberOfGenes);
+            while(Channels.Contains(ToGene))
+                ToGene = rnd.Next(NumberOfGenes);
+            Channels[FromGene] = ToGene;
+            Channels.Sort();
         }
 
-        private void CalculateCollisions(List<List<int>> combinations, List<int> channels)  // wyliczanie produktów mieszania i kolizji z sygnałami wejściowymi
+        private void SumCollisions(List<List<int>> combinations, List<int> channels)  // wyliczanie produktów mieszania i kolizji z sygnałami wejściowymi
         {
             //var harmonics = new List<int>();    // lista przechowująca wszystkie produkty mieszania
             Dictionary<int, int> collisionsForEveryChannel =
@@ -94,18 +109,18 @@ namespace SIS_PRO
 
         }
 
-        private void GenerateAllPairs(List<int> channels)   // Generowanie wszystkich kombinacji częstotliwości produktów mieszania
+        private void CalculateCollisions()   // Generowanie wszystkich kombinacji częstotliwości produktów mieszania
         {
             var pickedCombinations = new List<List<int>>();
 
             //int allPossibleCombinations = MathOperations.NewtonSymbol(channels.Count, 3);
 
-            int Length = channels.Count;
+            int Length = Channels.Count;
 
             for (int i = 0; i < Length - 2; i++)
                 for (int j = i + 1; j < Length - 1; j++)
                     for (int k = j + 1; k < Length; k++)
-                        pickedCombinations.Add(new List<int>() { channels[i], channels[j], channels[k] });
+                        pickedCombinations.Add(new List<int>() { Channels[i], Channels[j], Channels[k] });
 
             /*
             for (int i = 0; i < allPossibleCombinations; i++)
@@ -130,16 +145,16 @@ namespace SIS_PRO
                 }
             }
             */
-            CalculateCollisions(pickedCombinations, channels);
+            SumCollisions(pickedCombinations, Channels);
         }
 
-        private void GenerateBaseSolution(int numberOfGenes)
+        private void GenerateBaseSolution()
         {
-            for (int i = 0; i < numberOfGenes; i++)
+            for (int i = 0; i < NumberOfGenes; i++)
             {
                 while (true)
                 {
-                    int newChannel = rnd.Next(numberOfGenes);//mnożnik wybierany jest wyżej w Genome
+                    int newChannel = rnd.Next(NumberOfGenes);//mnożnik wybierany jest wyżej w Genome
                     if (!Channels.Contains(newChannel))
                     {
                         Channels.Add(newChannel);
@@ -148,6 +163,11 @@ namespace SIS_PRO
                 }
             }
             Channels.Sort();
+        }
+
+        public int getValue()
+        {
+            return NumberOfCollisions;
         }
 
         public string PrintResult()
