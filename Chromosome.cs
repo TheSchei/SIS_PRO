@@ -14,18 +14,28 @@ namespace SIS_PRO
         private List<int> Channels;
         private int NumberOfCollisions;
         private int NumberOfGenes;
-        private Random rnd = new Random();
+        private Random rnd;
 
         public Chromosome(int NumberOfGenes)
         {
             Channels = new List<int>();
+            rnd = new Random();
             this.NumberOfGenes = NumberOfGenes;
             GenerateBaseSolution();
             CalculateCollisions();
         }
+        private Chromosome(int NumberOfGenes, int NumberOfCollisions, List<int> Channels)
+        {
+            this.Channels = new List<int>();
+            rnd = new Random();
+            this.NumberOfGenes = NumberOfGenes;
+            this.NumberOfCollisions = NumberOfCollisions;
+            foreach (int channel in Channels)
+                this.Channels.Add(channel);
+        }
         public Chromosome DeepCopy()
         {
-            throw new NotImplementedException("Chromosome.DeepCopy");
+            return new Chromosome(NumberOfGenes, NumberOfCollisions, Channels);
         }
 
         public void Mutate()
