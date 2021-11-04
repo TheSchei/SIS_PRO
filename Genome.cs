@@ -61,11 +61,20 @@ namespace SIS_PRO
         }
         private Chromosome ChooseBestChromosomes()//zwraca obecnie najlepszy
         {
-            throw new NotImplementedException("Genome.ChooseBestChromosomes");
+            Chromosomes.Sort((x, y) => x.getValue().CompareTo(y.getValue()));//sprawdzić czy sortuje jak powinno (kolejnosć ma być malejąca)
+            Chromosomes.RemoveRange(NumberOfChromosomes, Chromosomes.Count - NumberOfChromosomes);
+            return Chromosomes[0];
         }
-        private bool SetCurrentBest()//ustawia CurrentBest i zwraca True, jeśli coś isę zmieniło
+        private bool SetCurrentBest()//ustawia CurrentBest i zwraca True, jeśli coś się zmieniło
         {
-            throw new NotImplementedException("Genome.getCurrentBest");
+            bool Flag = false;
+            foreach (Chromosome chromosome in Chromosomes)
+                if (chromosome.getValue() < CurrentBest)
+                {
+                    CurrentBest = chromosome.getValue();
+                    Flag = true;
+                }
+            return Flag;
         }
     }
 }
