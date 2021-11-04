@@ -14,28 +14,31 @@ namespace SIS_PRO
         private List<int> Channels;
         private int NumberOfCollisions;
         private int NumberOfGenes;
+        private int Width;
         private Random rnd;
 
-        public Chromosome(int NumberOfGenes)
+        public Chromosome(int NumberOfGenes, int Width)
         {
             Channels = new List<int>();
             rnd = new Random();
             this.NumberOfGenes = NumberOfGenes;
+            this.Width = Width;
             GenerateBaseSolution();
             CalculateCollisions();
         }
-        private Chromosome(int NumberOfGenes, int NumberOfCollisions, List<int> Channels)
+        private Chromosome(int NumberOfGenes, int NumberOfCollisions, List<int> Channels, int Width)
         {
             this.Channels = new List<int>();
             rnd = new Random();
             this.NumberOfGenes = NumberOfGenes;
             this.NumberOfCollisions = NumberOfCollisions;
+            this.Width = Width;
             foreach (int channel in Channels)
                 this.Channels.Add(channel);
         }
         public Chromosome DeepCopy()
         {
-            return new Chromosome(NumberOfGenes, NumberOfCollisions, Channels);
+            return new Chromosome(NumberOfGenes, NumberOfCollisions, Channels, Width);
         }
 
         public void Mutate()
@@ -50,7 +53,7 @@ namespace SIS_PRO
         }
         private void TransitGene(int FromGene)
         {
-            int ToGene = rnd.Next(NumberOfGenes);
+            int ToGene = rnd.Next(Width);
             while(Channels.Contains(ToGene))
                 ToGene = rnd.Next(NumberOfGenes);
             Channels[FromGene] = ToGene;
@@ -168,7 +171,7 @@ namespace SIS_PRO
             {
                 while (true)
                 {
-                    int newChannel = rnd.Next(NumberOfGenes);//mnożnik wybierany jest wyżej w Genome
+                    int newChannel = rnd.Next(Width);//mnożnik wybierany jest wyżej w Genome
                     if (!Channels.Contains(newChannel))
                     {
                         Channels.Add(newChannel);
@@ -188,7 +191,7 @@ namespace SIS_PRO
         {
             string output = "";
             output += "Liczba kolizji to: " + NumberOfCollisions.ToString() + Environment.NewLine;
-            output += "Szerokość kanału to: " + NumberOfGenes.ToString() + Environment.NewLine;
+            output += "Szerokość kanału to: " + Width.ToString() + Environment.NewLine;
             output += "Zajęte kanały to: " + Environment.NewLine;
             output += "Zajęte kanały to: " + PrintChanels() + Environment.NewLine;
             output += Environment.NewLine;

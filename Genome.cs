@@ -7,6 +7,7 @@ namespace SIS_PRO
     class Genome
     {
         private List<Chromosome> Chromosomes;
+        private int WindowWidth;
         private int NumberOfGenes;
         private int NumberOfChromosomes;
 
@@ -15,16 +16,18 @@ namespace SIS_PRO
         private int NumberOfIterationsWithoutProgress;
 
 
-        public Genome(int NumberOfGenes)
+        public Genome(int NumberOfGenes, int WindowWidth)
         {
             this.NumberOfGenes = NumberOfGenes;
+            this.WindowWidth = WindowWidth;
             NumberOfChromosomes = 10;
             NumberOfIterationsWithoutProgress = 100;//orientacyjnie
             GenerateChromosomes();
         }
-        public Genome(int NumberOfGenes, int NumberOfChromosomes)
+        public Genome(int NumberOfGenes, int WindowWidth, int NumberOfChromosomes)
         {
             this.NumberOfGenes = NumberOfGenes;
+            this.WindowWidth = WindowWidth;
             this.NumberOfChromosomes = NumberOfChromosomes;
             GenerateChromosomes();
         }
@@ -56,7 +59,7 @@ namespace SIS_PRO
         {
             Chromosomes = new List<Chromosome>();
             for (int i = 0; i < NumberOfChromosomes; i++)
-                Chromosomes.Add(new Chromosome(NumberOfGenes));
+                Chromosomes.Add(new Chromosome(NumberOfGenes, WindowWidth));
             SetCurrentBest();
         }
         private Chromosome ChooseBestChromosomes()//zwraca obecnie najlepszy

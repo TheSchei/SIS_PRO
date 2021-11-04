@@ -26,7 +26,7 @@ namespace SIS_PRO
         }
         private bool TryToFindSolution(int size)//true - znaleziono (wtedy jeszcze ustawia BestResult)
         {
-            Genome Solver = new Genome(size);
+            Genome Solver = new Genome(NumberOfChanels, size);
             Chromosome NewBestResult = Solver.Run();
             if(!(NewBestResult is null))
             {
