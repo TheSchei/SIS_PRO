@@ -1,8 +1,5 @@
-﻿using SIS_PRO.ExtensionMethods;
-using SIS_PRO.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SIS_PRO
 {
@@ -54,7 +51,7 @@ namespace SIS_PRO
         private void TransitGene(int FromGene)
         {
             int ToGene = rnd.Next(Width);
-            while(Channels.Contains(ToGene))
+            while (Channels.Contains(ToGene))
                 ToGene = rnd.Next(Width);
             Channels[FromGene] = ToGene;
             Channels.Sort();
@@ -65,31 +62,6 @@ namespace SIS_PRO
             //var harmonics = new List<int>();    // lista przechowująca wszystkie produkty mieszania
             Dictionary<int, int> collisionsForEveryChannel =
                 new Dictionary<int, int>();
-
-            /*foreach (var combination in combinations)
-            {
-                int fi = combination[0];
-                int fj = combination[1];
-                int fk = combination[2];
-
-                harmonics.Add(fi + fj - fk);
-                harmonics.Add(fi - fj + fk);
-                harmonics.Add(-fi + fj + fk);
-                harmonics.Add(fi + fj + fk);
-            }
-
-            foreach (int channel in channels)
-            {
-                int numberOfCollisions = 0;
-
-                foreach (int harmonic in harmonics)
-                {
-                    if (harmonic == channel)
-                        numberOfCollisions++;
-                }
-                collisionsForEveryChannel.Add(channel, numberOfCollisions);     // słownik, którego kluczem jest numer kanału wejściowego, a wartością ilość kolizji.
-            }*/
-            //throw new NotImplementedException("Chromosome.CalculateCollisions");
 
             foreach (int channel in channels)
                 collisionsForEveryChannel.Add(channel, 0);
@@ -130,8 +102,6 @@ namespace SIS_PRO
         {
             var pickedCombinations = new List<List<int>>();
 
-            //int allPossibleCombinations = MathOperations.NewtonSymbol(channels.Count, 3);
-
             int Length = Channels.Count;
 
             for (int i = 0; i < Length - 2; i++)
@@ -139,29 +109,6 @@ namespace SIS_PRO
                     for (int k = j + 1; k < Length; k++)
                         pickedCombinations.Add(new List<int>() { Channels[i], Channels[j], Channels[k] });
 
-            /*
-            for (int i = 0; i < allPossibleCombinations; i++)
-            {
-                while (true)
-                {
-                    var tempList = channels.DeepCopy();
-                    int fi = tempList[rnd.Next(tempList.Count)];
-                    tempList.Remove(fi);
-                    int fj = tempList[rnd.Next(tempList.Count)];
-                    tempList.Remove(fj);
-                    int fk = tempList[rnd.Next(tempList.Count)];
-
-                    var combination = new List<int>() { fi, fj, fk };
-                    combination.Sort();
-
-                    if (!pickedCombinations.ContainsList(combination))
-                    {
-                        pickedCombinations.Add(combination);
-                        break;
-                    }
-                }
-            }
-            */
             SumCollisions(pickedCombinations, Channels);
         }
 
@@ -189,16 +136,16 @@ namespace SIS_PRO
 
         public int getChannelWidth()
         {
-            return Channels[Channels.Count - 1] - Channels[0] + 1;
+            return Channels[Channels.Count - 1];
         }
 
         public string PrintResult()
         {
             string output = "";
             output += "Liczba kolizji to: " + NumberOfCollisions.ToString() + Environment.NewLine;
-            output += "Szerokość kanału to: " + getChannelWidth().ToString() + Environment.NewLine;
+            output += "Szerokość pasma to: " + getChannelWidth().ToString() + Environment.NewLine;
             output += "Zajęte kanały to: " + Environment.NewLine;
-            output += "Zajęte kanały to: " + PrintChanels() + Environment.NewLine;
+            output += $"[{PrintChanels()}]" + Environment.NewLine;
             output += Environment.NewLine;
             return output;
         }
@@ -208,6 +155,17 @@ namespace SIS_PRO
             foreach (int channel in Channels)
                 output += channel.ToString() + " ";
             return output;
+        }
+
+        // Czasami znajduje takie wyniki, gdzie kanały to np. [7,14,...] zamiast [0,7,...]
+        public void FormatChannels()
+        {
+            if (Channels[0] != 0)
+            {
+                int difference = Channels[0];
+                for (int i = 0; i < Channels.Count; i++)
+                    Channels[i] -= difference;
+            }
         }
     }
 }

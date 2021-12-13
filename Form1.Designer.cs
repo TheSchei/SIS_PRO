@@ -49,7 +49,7 @@ namespace SIS_PRO
             // 
             this.NumberOfChanelsBox.Location = new System.Drawing.Point(238, 13);
             this.NumberOfChanelsBox.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -57,7 +57,7 @@ namespace SIS_PRO
             this.NumberOfChanelsBox.Size = new System.Drawing.Size(120, 23);
             this.NumberOfChanelsBox.TabIndex = 2;
             this.NumberOfChanelsBox.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
