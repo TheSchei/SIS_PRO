@@ -40,9 +40,27 @@ namespace SIS_PRO
 
         public void Mutate()
         {
+            double probability = rnd.NextDouble();
+            if (probability >= 0.75)
+            {
+                MutateGene();
+                MutateGene();
+                MutateGene();
+            }
+            else if (probability >= 0.5)
+            {
+                MutateGene();
+                MutateGene();
+            }
+            else
+                MutateGene();
+
+            CalculateCollisions();
+        }
+        private void MutateGene()
+        {
             int FromGene = GetGeneIndex();
             TransitGene(FromGene);
-            CalculateCollisions();
         }
         private int GetGeneIndex()
         {
