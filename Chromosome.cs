@@ -19,7 +19,7 @@ namespace SIS_PRO
             Channels = new List<int>();
             rnd = new Random();
             this.NumberOfGenes = NumberOfGenes;
-            this.Width = Width;
+            this.Width = Width + 1;
             GenerateBaseSolution();
             CalculateCollisions();
         }

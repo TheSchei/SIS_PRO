@@ -33,7 +33,7 @@ namespace SIS_PRO
         }
         private bool TryToFindSolution(int size)//true - znaleziono (wtedy jeszcze ustawia BestResult)
         {
-            if (size <= 3)  // Wtedy program się zapętla z jakiegoś powodu
+            if (size < 3)  // Wtedy program się zapętla z jakiegoś powodu
                 return false;
             Genome Solver = new Genome(NumberOfChanels, size);
             Chromosome NewBestResult = Solver.Run();
